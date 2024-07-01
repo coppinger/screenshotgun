@@ -11,6 +11,9 @@
 	let error = null;
 	let debugInfo = '';
 
+	// Get the domain name from the URL
+	$: domainName = url ? new URL(url).hostname.replace(/^www\./, '') : '';
+
 	onMount(() => {
 		if ($page.data.screenshot) {
 			processScreenshot($page.data.screenshot);
@@ -104,13 +107,25 @@
 	function downloadSection(dataUrl, index) {
 		const link = document.createElement('a');
 		link.href = dataUrl;
-		link.download = `section_${index + 1}.png`;
+		link.download = `${domainName}_section_${index + 1}.png`;
 		link.click();
+	}
+
+	function downloadAllSections() {
+		sections.forEach((section, index) => {
+			const link = document.createElement('a');
+			link.href = section;
+			link.download = `${domainName}_section_${index + 1}.png`;
+			link.click();
+		});
 	}
 </script>
 
 <main>
 	<h1>Website Screenshot Tool</h1>
+	<div>
+		<button on:click={downloadAllSections}>Download All Sections as Images</button>
+	</div>
 
 	<div>
 		<input bind:value={url} placeholder="Enter website URL" />

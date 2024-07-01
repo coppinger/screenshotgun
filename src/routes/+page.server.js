@@ -13,6 +13,8 @@ export async function load({ url }) {
 				url: targetUrl,
 				full_page: true,
 				full_page_scroll: true,
+				full_page_scroll_delay: 2000,
+				full_page_scroll_by: 600,
 				viewport_width: 1920,
 				viewport_height: 1080,
 				device_scale_factor: 1,
@@ -22,8 +24,10 @@ export async function load({ url }) {
 				block_cookie_banners: true,
 				block_banners_by_heuristics: false,
 				block_trackers: true,
-				delay: 1,
-				timeout: 60
+				delay: 5,
+				timeout: 90,
+				reduced_motion: true,
+				dark_mode: true
 			},
 			validateStatus: false,
 			responseType: 'arraybuffer' // Expect binary data
