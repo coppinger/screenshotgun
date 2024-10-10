@@ -27,7 +27,8 @@ export async function load({ url }) {
 				delay: 5,
 				timeout: 90,
 				reduced_motion: true,
-				dark_mode: true
+				dark_mode: true,
+				ignore_host_errors: true
 			},
 			validateStatus: false,
 			responseType: 'arraybuffer' // Expect binary data
